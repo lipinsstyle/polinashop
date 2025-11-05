@@ -27,41 +27,51 @@
   color: #e85c2b;
 }
 .section-block__content {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.section-block__content .product-card {
+  width: 100%;
+  margin: 0;
+  justify-self: stretch;
 }
 
 @media (max-width: 1024px) {
   .section-block {
-    padding: 0 12px;
+    padding: 0 20px;
   }
   .section-block__content {
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
   }
 }
 @media (max-width: 768px) {
   .section-block {
-    padding: 0 4vw;
+    padding: 0 15px;
   }
   .section-block__content {
-    gap: 8px;
-    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
   }
 }
 @media (max-width: 480px) {
   .section-block {
-    padding: 0 2vw;
+    padding: 0 10px;
   }
   .section-block__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    padding: 0 5px;
   }
   .section-block__title {
-    font-size: 16px;
+    font-size: 18px;
   }
   .section-block__link {
-    font-size: 13px;
+    font-size: 14px;
+  }
+  .section-block__content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }

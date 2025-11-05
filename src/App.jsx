@@ -8,141 +8,63 @@ import SpecialOffers from './components/SpecialOffers';
 import StoreLocations from './components/StoreLocations';
 import ArticlesSection from './components/ArticlesSection';
 import Footer from './components/Footer';
+import { CartProvider } from './components/CartContext';
+import { ProductsProvider, useProducts } from './components/ProductsContext';
+import { FavoritesProvider } from './components/FavoritesContext';
+import CartPage from './components/CartPage';
+import SearchPage from './components/SearchPage';
+import FavoritesPage from './components/FavoritesPage';
 
-const mockProducts = [
-  {
-    image: '/assets/images/pancakes.png',
-    title: 'Г/Ц Блинчики с мясом вес. Россия',
-    price: '44,50',
-    oldPrice: '50,50',
-    discount: '-12%',
-  },
-  {
-    image: '/assets/images/milk1.png',
-    title: 'Молоко ПРОСТОКВАШИНО паст. питьевое цельное',
-    price: '64,90',
-    oldPrice: '79,90',
-    discount: '-19%',
-  },
-  {
-    image: '/assets/images/colbasa.png',
-    title: 'Колбаса сырокопченая МЯСНАЯ ИСТОРИЯ',
-    price: '199,00',
-    oldPrice: '249,00',
-    discount: '-20%',
-  },
-  {
-    image: '/assets/images/sausages.png',
-    title: 'Сосиски вареные МЯСНАЯ ИСТОРИЯ',
-    price: '159,00',
-    oldPrice: '189,00',
-    discount: '-16%',
-  },
-  {
-    image: '/assets/images/milk1.png',
-    title: 'Молоко ПРОСТОКВАШИНО паст. питьевое цельное',
-    price: '64,90',
-    oldPrice: '79,90',
-    discount: '-19%',
-  },
-];
+const HomePage = () => {
+  const { getDiscountedProducts, getNewProducts, getBoughtBeforeProducts } = useProducts();
+  
+  const discountedProducts = getDiscountedProducts();
+  const newProducts = getNewProducts();
+  const boughtBeforeProducts = getBoughtBeforeProducts();
 
-const mockNewProducts = [
-  {
-    image: '/assets/images/palka.png',
-    title: 'Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»',
-    price: '599,99',
-    isNew: true,
-  },
-  {
-    image: '/assets/images/colbasa.png',
-    title: 'Колбаса сырокопченая МЯСНАЯ ИСТОРИЯ',
-    price: '199,00',
-    isNew: true,
-  },
-  {
-    image: '/assets/images/colbasa.png',
-    title: 'Колбаса сырокопченая МЯСНАЯ ИСТОРИЯ',
-    price: '199,00',
-    isNew: true,
-  },
-  {
-    image: '/assets/images/sausages.png',
-    title: 'Сосиски вареные МЯСНАЯ ИСТОРИЯ',
-    price: '159,00',
-    isNew: true,
-  },
-  {
-    image: '/assets/images/milk1.png',
-    title: 'Молоко ПРОСТОКВАШИНО паст. питьевое цельное',
-    price: '64,90',
-    isNew: true,
-  },
-];
-
-const mockBoughtBefore = [
-  {
-    image: '/assets/images/palka.png',
-    title: 'Комбайн КЗС-1218 «ДЕСНА-ПОЛЕСЬЕ GS12»',
-    price: '599,99',
-    boughtBefore: true,
-  },
-  {
-    image: '/assets/images/vetchina.png',
-    title: 'Ветчина варёная',
-    price: '77,99',
-    boughtBefore: true,
-  },
-  {
-    image: '/assets/images/colbasa.png',
-    title: 'Колбаса сырокопченая МЯСНАЯ ИСТОРИЯ',
-    price: '199,00',
-    boughtBefore: true,
-  },
-  {
-    image: '/assets/images/sausages.png',
-    title: 'Сосиски вареные МЯСНАЯ ИСТОРИЯ',
-    price: '159,00',
-    boughtBefore: true,
-  },
-  {
-    image: '/assets/images/milk1.png',
-    title: 'Молоко ПРОСТОКВАШИНО паст. питьевое цельное',
-    price: '64,90',
-    boughtBefore: true,
-  },
-];
+  return (
+    <div className="app-root">
+      <HeroBanner />
+      <SectionBlock title="Акции" rightLink={{ href: '#', text: 'Все акции' }}>
+        {discountedProducts.map((p) => (
+          <ProductCard key={p.id} {...p} />
+        ))}
+      </SectionBlock>
+      <SectionBlock title="Новинки" rightLink={{ href: '#', text: 'Все новинки' }}>
+        {newProducts.map((p) => (
+          <ProductCard key={p.id} {...p} />
+        ))}
+      </SectionBlock>
+      <SectionBlock title="Покупали раньше" rightLink={{ href: '#', text: 'Все покупки' }}>
+        {boughtBeforeProducts.map((p) => (
+          <ProductCard key={p.id} {...p} />
+        ))}
+      </SectionBlock>
+      <SpecialOffers />
+      <StoreLocations />
+      <ArticlesSection />
+      <Footer />
+    </div>
+  );
+};
 
 function App() {
   return (
-    <Router>
-      <div className="app-root">
-        <Header />
-        <HeroBanner />
-        <SectionBlock title="Акции" rightLink={{ href: '#', text: 'Все акции' }}>
-          {mockProducts.map((p, i) => (
-            <ProductCard key={i} {...p} />
-          ))}
-        </SectionBlock>
-        <SectionBlock title="Новинки" rightLink={{ href: '#', text: 'Все новинки' }}>
-          {mockNewProducts.map((p, i) => (
-            <ProductCard key={i} {...p} />
-          ))}
-        </SectionBlock>
-        <SectionBlock title="Покупали раньше" rightLink={{ href: '#', text: 'Все покупки' }}>
-          {mockBoughtBefore.map((p, i) => (
-            <ProductCard key={i} {...p} />
-          ))}
-        </SectionBlock>
-        <SpecialOffers />
-        <StoreLocations />
-        <ArticlesSection />
-        <Footer />
-      </div>
-      <Routes>
-        {/* Здесь будут маршруты для других страниц */}
-      </Routes>
-    </Router>
+    <ProductsProvider>
+      <FavoritesProvider>
+        <CartProvider>
+          <Router>
+            <Header />
+            <Routes>
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
+              <Route path="*" element={<HomePage />} />
+            </Routes>
+          </Router>
+        </CartProvider>
+      </FavoritesProvider>
+    </ProductsProvider>
   );
 }
 

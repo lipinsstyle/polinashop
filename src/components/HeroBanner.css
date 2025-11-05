@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px;
-  margin-bottom: 24px;
+  min-height: 320px;
+  margin-bottom: -16px;
   margin-top: 0;
   padding: 0;
   position: relative;
@@ -35,7 +35,7 @@
 
 @media (max-width: 1024px) {
   .hero-banner {
-    min-height: 300px;
+    min-height: 260px;
   }
   .hero-banner__content {
     padding: 20px 12px;
@@ -47,7 +47,7 @@
 
 @media (max-width: 768px) {
   .hero-banner {
-    min-height: 250px;
+    min-height: 170px;
   }
   .hero-banner__content {
     padding: 16px 8px;
@@ -59,7 +59,7 @@
 
 @media (max-width: 480px) {
   .hero-banner {
-    min-height: 200px;
+    min-height: 100px;
   }
   .hero-banner__content {
     padding: 12px 4px;
