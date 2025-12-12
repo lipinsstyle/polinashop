@@ -1,6 +1,7 @@
 ![котенок](src/assets/images/котенок.jpg)
 ![обезьяна](src/assets/images/обезьяна.jpg)
 ![кролик](src/assets/images/кролик.jpg)
+![три](src/assets/images/три.jpg)
 ## Что было реализовано:
 
 Разработала главную страницу
