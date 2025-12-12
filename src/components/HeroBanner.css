@@ -1,0 +1,70 @@
+.hero-banner {
+  width: 100vw;
+  background: transparent;
+  border-bottom: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 320px;
+  margin-bottom: -16px;
+  margin-top: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner__content {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  position: relative;
+}
+
+.hero-banner__img {
+  width: 100vw;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+@media (max-width: 1024px) {
+  .hero-banner {
+    min-height: 260px;
+  }
+  .hero-banner__content {
+    padding: 20px 12px;
+  }
+  .hero-banner__img {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: 170px;
+  }
+  .hero-banner__content {
+    padding: 16px 8px;
+  }
+  .hero-banner__img {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner {
+    min-height: 100px;
+  }
+  .hero-banner__content {
+    padding: 12px 4px;
+  }
+  .hero-banner__img {
+    max-width: 500px;
+  }
+}

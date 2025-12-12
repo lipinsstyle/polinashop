@@ -1,0 +1,332 @@
+/* Overlay затемнения */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(3px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Модальное окно */
+.auth-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 440px;
+  padding: 38px 34px 34px 34px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Кнопка закрытия */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.close-icon svg path {
+  transition: stroke 0.2s;
+}
+
+.close-btn:hover .close-icon svg path {
+  stroke: #ff6b35;
+}
+
+/* Контент модального окна */
+.auth-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #232426;
+  margin: 0 0 8px 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Поля ввода */
+.phone-field,
+.name-field,
+.photo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phone-label,
+.name-label,
+.photo-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #232426;
+  margin-left: 2px;
+}
+
+/* Поле телефона */
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 0 16px;
+  border: 2px solid #e8e8e8;
+  transition: all 0.2s;
+}
+
+.phone-input-container:focus-within {
+  background: #fff;
+  border-color: #2db344;
+  box-shadow: 0 0 0 3px rgba(45, 179, 68, 0.1);
+}
+
+.phone-input-full {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: #232426;
+  outline: none;
+}
+
+.phone-input-full::placeholder {
+  color: #babfc2;
+}
+
+/* Поле имени */
+.name-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #232426;
+  background: #f5f5f5;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.name-input:focus {
+  background: #fff;
+  border-color: #2db344;
+  box-shadow: 0 0 0 3px rgba(45, 179, 68, 0.1);
+}
+
+.name-input::placeholder {
+  color: #babfc2;
+}
+
+/* Загрузка фото */
+.photo-upload-container {
+  position: relative;
+}
+
+.photo-input {
+  display: none;
+}
+
+.photo-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border: 2px dashed #e8e8e8;
+  border-radius: 12px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.photo-upload-label:hover {
+  border-color: #2db344;
+  background: #f9fff9;
+}
+
+.photo-placeholder,
+.photo-selected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.photo-icon {
+  font-size: 24px;
+}
+
+.photo-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #232426;
+}
+
+/* Превью фото */
+.photo-preview {
+  margin-top: 12px;
+  position: relative;
+  width: fit-content;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #e8e8e8;
+}
+
+.remove-photo-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.remove-photo-btn:hover {
+  background: #c94400;
+  transform: scale(1.1);
+}
+
+/* Кнопка входа/регистрации */
+.auth-login-btn {
+  width: 100%;
+  padding: 16px;
+  background: #ff7000;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  box-shadow: 0 4px 14px rgba(255, 112, 0, 0.25);
+}
+
+.auth-login-btn:hover {
+  background: #ea5d00;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 112, 0, 0.35);
+}
+
+.auth-login-btn:active {
+  transform: translateY(0);
+}
+
+/* Дополнительные кнопки */
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.auth-register-btn,
+.forgot-btn {
+  background: none;
+  border: none;
+  color: #2db344;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.auth-register-btn:hover,
+.forgot-btn:hover {
+  color: #218431;
+  text-decoration: underline;
+}
+
+.forgot-btn {
+  color: #babfc2;
+  font-size: 14px;
+}
+
+.forgot-btn:hover {
+  color: #888;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .auth-modal {
+    width: 95%;
+    padding: 28px 22px 26px 22px;
+  }
+
+  .auth-title {
+    font-size: 24px;
+  }
+
+  .phone-input,
+  .name-input {
+    font-size: 16px;
+  }
+
+  .auth-login-btn {
+    font-size: 17px;
+    padding: 14px;
+  }
+}
+
